@@ -13,7 +13,6 @@ if __name__ == '__main__':
     spark = SparkSession \
         .builder \
         .appName("RDD examples") \
-        .master('local[*]') \
         .getOrCreate()
     spark.sparkContext.setLogLevel('ERROR')
 
@@ -49,4 +48,4 @@ if __name__ == '__main__':
 
     join_pair_rdd.foreach(print)
 
-# spark-submit --packages "org.apache.hadoop:hadoop-aws:2.7.4" rdd/scholaship_recipient_join_filter.py
+# spark-submit --master yarn --packages "org.apache.hadoop:hadoop-aws:2.7.4" rdd/scholaship_recipient_join_filter.py
