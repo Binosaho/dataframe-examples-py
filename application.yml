@@ -18,8 +18,8 @@ mongodb_config:
 redshift_conf:
   filetype: csv
   delimiter: |
-  dbtable: PUBLIC.TXN_FCT
-  query: SELECT txn_id, create_time, amount, cust_id from PUBLIC.TXN_FCT
+  dbtable: PUBLIC.sales
+  query: SELECT txn_id, create_time, amount, cust_id from PUBLIC.sales
 
 spark_sql_demo:
   agg_demo: >
