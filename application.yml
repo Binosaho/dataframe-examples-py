@@ -19,7 +19,7 @@ redshift_conf:
   filetype: csv
   delimiter: |
   dbtable: PUBLIC.sales
-  query: SELECT txn_id, create_time, amount, cust_id from PUBLIC.sales
+  query: SELECT sellerid,buyerid from PUBLIC.sales
 
 spark_sql_demo:
   agg_demo: >
