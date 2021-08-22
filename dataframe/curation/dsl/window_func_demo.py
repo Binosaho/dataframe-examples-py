@@ -80,4 +80,14 @@ if __name__ == '__main__':
                 dense_rank().over(catRevenueWindowSpec).alias("rev_dense_rank")) \
         .show()
 
+    products \
+        .select("product",
+                "category",
+                "revenue",
+                lag("revenue", 1).over(catRevenueWindowSpec).alias("prevRevenue"),
+            ) \
+        .withColumn("incr_percentage", ((col('revenue') - col('prevRevenue')) / col('prevRevenue')) * 100) \
+        .show()
+
+
 # spark-submit --packages "org.apache.hadoop:hadoop-aws:2.7.4" dataframe/curation/dsl/window_func_demo.py
