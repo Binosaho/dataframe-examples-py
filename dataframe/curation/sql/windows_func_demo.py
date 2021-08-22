@@ -108,4 +108,17 @@ if __name__ == '__main__':
           """)\
         .show(5, False)
 
+    spark.sql("""
+            select * from 
+            (select
+              product,
+              category,
+              revenue,
+              dense_rank() over(partition by category order by revenue) as rev_dense_rank
+             from
+              products) t
+              where rev_dense_rank = 2
+          """)\
+        .show(5, False)
+
 # spark-submit --packages "org.apache.hadoop:hadoop-aws:2.7.4" dataframe/curation/sql/windows_func_demo.py
