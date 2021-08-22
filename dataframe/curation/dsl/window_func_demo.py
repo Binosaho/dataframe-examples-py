@@ -84,7 +84,7 @@ if __name__ == '__main__':
         .select("product",
                 "category",
                 "revenue",
-                lag("revenue", 1).over(catRevenueWindowSpec).alias("prevRevenue"),
+                lag("revenue", 1, 0).over(catRevenueWindowSpec).alias("prevRevenue"),
             ) \
         .withColumn("incr_percentage", ((col('revenue') - col('prevRevenue')) / col('prevRevenue')) * 100) \
         .show()
